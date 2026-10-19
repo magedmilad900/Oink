@@ -1,0 +1,235 @@
+:root{--ink:#2B1B3D;--bg:#EFE6FF;--sun:#FFD23F;--pink:#FF9EC0;--mint:#5EE0B0;--sky:#8CCBFF;--sh:5px 5px 0 var(--ink);--fs:1}
+body.hc{--bg:#fff;--sun:#FFE15C;--pink:#FFC2D6;--mint:#8CF0C9;--sky:#B5DEFF}
+*{box-sizing:border-box}
+html{font-size:calc(17px*var(--fs))}
+body{margin:0;padding-bottom:96px;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-weight:700;line-height:1.55;
+background-image:radial-gradient(var(--ink) 1.2px,transparent 1.3px);background-size:26px 26px;animation:drift 30s linear infinite}
+@keyframes drift{to{background-position:26px 26px}}
+body.hc{background-image:none}body.big{--fs:1.2}
+h1,h2,.logo,.big-num,.stats b,.btn{font-family:"Baloo 2",Nunito,sans-serif;font-weight:800}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:10px;z-index:99}
+.skip:focus{top:8px}
+:focus-visible{outline:4px solid #6A2CFF;outline-offset:3px}
+button{font-family:inherit;color:var(--ink)}
+.top{display:flex;gap:8px;align-items:center;padding:14px 18px;max-width:880px;margin:auto}
+.logo{font-size:2rem;line-height:1.3;margin-right:auto;background:var(--sun);border:3px solid var(--ink);border-radius:16px;padding:0 16px;box-shadow:3px 3px 0 var(--ink);transform:rotate(-2deg)}
+.mini{font-size:.8rem;font-weight:800;background:#fff;border:3px solid var(--ink);border-radius:999px;padding:2px 12px;cursor:pointer;transition:transform .15s}
+.mini:hover{transform:scale(1.07) rotate(-2deg)}
+.mini[aria-pressed=true]{background:var(--ink);color:#fff}
+main{max-width:880px;margin:auto;padding:0 18px}
+.page{display:none;gap:22px}
+.page.active{display:grid;animation:pop .45s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pop{from{opacity:0;transform:translateY(30px) scale(.96)}}
+.hero{display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:center}
+#pig{width:100%;cursor:pointer;animation:bob 2.8s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-2deg)}}
+#pig.worried{animation-duration:.5s}
+#pig.jump{animation:jump .6s}
+@keyframes jump{30%{transform:translateY(-40px) scale(.95,1.1)}60%{transform:translateY(0) scale(1.1,.9)}}
+.bubble{position:relative;background:#fff;border:4px solid var(--ink);border-radius:28px;padding:16px 22px;box-shadow:var(--sh)}
+.bubble::before{content:"";position:absolute;left:-17px;top:46px;width:26px;height:26px;background:#fff;border:solid var(--ink);border-width:0 0 4px 4px;transform:rotate(45deg);border-radius:0 0 0 6px}
+.mood{margin:0;font-weight:800;color:#6A2CFF}
+h1{margin:0;font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.2}
+.big-num{display:inline-block;background:var(--sun);border:4px solid var(--ink);border-radius:18px;padding:0 16px;margin:0 4px;transform:rotate(-3deg);box-shadow:3px 3px 0 var(--ink)}
+.verdict{margin:6px 0 0}
+.card{background:#fff;border:4px solid var(--ink);border-radius:28px;padding:20px 22px;box-shadow:var(--sh)}
+.sun{background:var(--sun)}.mint{background:var(--mint)}.sky{background:var(--sky)}.pink{background:var(--pink)}
+h2{margin:0 0 10px;font-size:1.7rem;line-height:1.2}
+.hint{margin:0 0 12px}
+.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.fields.two{grid-template-columns:2fr 1fr}
+label{display:grid;gap:4px;font-weight:800;font-size:.9rem}
+input[type=number],input[type=text]{font:inherit;font-weight:800;font-size:1.1rem;color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:14px;padding:6px 12px;width:100%;transition:transform .15s}
+input:focus{transform:scale(1.02)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.stats div{background:#fff;border:3px solid var(--ink);border-radius:18px;padding:8px;text-align:center;transition:transform .2s}
+.stats div:hover{transform:translateY(-4px) rotate(-1.5deg)}
+.stats b{display:block;font-size:1.8rem;line-height:1.3;font-weight:800}
+.stats span{font-size:.8rem}
+.meter{height:24px;margin-top:16px;background:#fff;border:3px solid var(--ink);border-radius:999px;overflow:hidden}
+#meterFill{height:100%;width:0;background:repeating-linear-gradient(45deg,var(--mint) 0 14px,#3DCB98 14px 28px);border-right:3px solid var(--ink);transition:width .8s cubic-bezier(.3,1.4,.5,1)}
+#meterTxt{margin:6px 0 0;font-size:.9rem}
+.row-add{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.amt{flex:1;min-width:160px}
+.btn{font-size:1.4rem;background:var(--sun);border:4px solid var(--ink);border-radius:18px;padding:2px 26px;box-shadow:4px 4px 0 var(--ink);cursor:pointer;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.quick button{font-weight:800;background:#fff;border:3px solid var(--ink);border-radius:12px;padding:0 14px;cursor:pointer;transition:transform .15s}
+.quick button:hover{transform:translateY(-3px) rotate(2deg);background:var(--sun)}
+fieldset{border:0;padding:0;margin:14px 0 0}legend{font-weight:800;margin-bottom:6px}
+#chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-flex;gap:6px;align-items:center;background:#fff;border:3px solid var(--ink);border-radius:999px;padding:2px 16px;font-weight:800;cursor:pointer;transition:transform .2s cubic-bezier(.3,1.8,.5,1)}
+.chip span:hover{transform:scale(1.08)}
+.chip input:checked+span{background:var(--ink);color:#fff;transform:scale(1.1) rotate(-2deg)}
+.chip input:focus-visible+span{outline:4px solid #6A2CFF;outline-offset:3px}
+.toast{min-height:1.6em;margin:10px 0 0;font-weight:800}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.li{display:flex;align-items:center;gap:12px;background:#fff;border:3px solid var(--ink);border-radius:16px;padding:6px 14px;animation:pop .4s}
+.li .e{font-size:1.6rem}.li .t{flex:1}
+.li button{font-weight:800;background:#fff;border:3px solid var(--ink);border-radius:12px;cursor:pointer;padding:0 10px}
+.li button:hover{background:var(--pink)}
+.empty{text-align:center;padding:10px}
+/* carousel */
+.carousel{overflow:hidden;position:relative}
+.track{display:flex;transition:transform .5s cubic-bezier(.3,1.2,.5,1)}
+.slide{flex:0 0 100%;padding:14px 10px 6px;text-align:center;display:grid;gap:4px;justify-items:center;align-content:start}
+.slide .emo{font-size:5rem;line-height:1.1;animation:bob 2.6s ease-in-out infinite}
+.slide h2{margin:0}.slide p{margin:0;max-width:34ch}
+.slide .num{font-family:"Baloo 2";font-weight:800;font-size:3.4rem;line-height:1.1;background:var(--sun);border:4px solid var(--ink);border-radius:20px;padding:0 20px;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--ink)}
+.slide .small{font-size:.9rem;background:#fff;border:3px solid var(--ink);border-radius:999px;padding:0 14px}
+.ctrl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px}
+.arrow{width:42px;height:42px;font-size:1.6rem;line-height:1;font-weight:800;background:#fff;border:3px solid var(--ink);border-radius:50%;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .15s}
+.arrow:hover{transform:scale(1.12)}.arrow:active{transform:translate(3px,3px);box-shadow:none}
+.dots{display:flex;gap:8px}
+.dots button{width:14px;height:14px;padding:0;border-radius:50%;background:#fff;border:3px solid var(--ink);cursor:pointer;transition:all .25s}
+.dots button[aria-selected=true]{width:34px;border-radius:99px;background:var(--ink)}
+.intro{position:fixed;inset:0;z-index:50;background:var(--sun);display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px}
+.intro.show{display:flex;animation:pop .5s}
+.intro .carousel{width:min(480px,100%)}
+.intro .slide .emo{font-size:7rem}.intro h2{font-size:2.3rem}
+.intro .slide p{font-size:1.15rem}
+/* goal */
+.jarwrap{display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center;margin-top:18px}
+.jar{position:relative;height:230px;border:5px solid var(--ink);border-radius:30px 30px 60px 60px;background:#fff;overflow:hidden;box-shadow:var(--sh)}
+.water{position:absolute;left:0;right:0;bottom:0;height:0;background:var(--pink);border-top:4px solid var(--ink);transition:height 1s cubic-bezier(.3,1.3,.5,1)}
+.water::before{content:"";position:absolute;left:-10%;top:-14px;width:120%;height:14px;background:radial-gradient(circle at 10px 14px,var(--pink) 9px,transparent 10px) 0 0/20px 14px repeat-x;animation:wave 2s linear infinite}
+@keyframes wave{to{transform:translateX(20px)}}
+#gpct{position:absolute;inset:0;display:grid;place-items:center;font-family:"Baloo 2";font-weight:800;font-size:2.4rem}
+.gtxt{margin:0;font-size:1.15rem}
+.fall{position:fixed;top:-40px;z-index:60;pointer-events:none;font-size:1.8rem;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+/* tabs */
+.tabs{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);width:min(440px,calc(100% - 24px));display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:#fff;border:4px solid var(--ink);border-radius:26px;padding:6px;box-shadow:var(--sh);z-index:40}
+.tabs button{display:grid;justify-items:center;font-weight:800;font-size:.78rem;line-height:1.2;background:transparent;border:0;border-radius:18px;padding:4px 0;cursor:pointer;transition:transform .2s cubic-bezier(.3,1.8,.5,1),background .2s}
+.tabs button span{font-size:1.5rem}
+.tabs button:hover{transform:translateY(-4px)}
+.tabs button[aria-current=page]{background:var(--sun);transform:translateY(-6px) scale(1.06)}
+@media(max-width:640px){.hero{grid-template-columns:1fr;text-align:center}#pig{max-width:170px;margin:auto}.bubble::before{display:none}.fields,.stats,.fields.two{grid-template-columns:1fr}.jarwrap{grid-template-columns:1fr;justify-items:center}.jar{width:170px}.top .mini{font-size:.7rem}}
+@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}}
+
+/* Visual corrections requested: classic palette, cleaner home, contained Story carousel */
+body{background:var(--bg);background-image:radial-gradient(var(--ink) 1.2px,transparent 1.3px);background-size:26px 26px}
+body.hc{background-image:none}
+#pig{display:none}
+.hero{grid-template-columns:1fr;gap:18px}
+.bubble::before{display:none}
+#story{align-items:start}
+#story .card{align-self:start;min-height:0;padding-bottom:18px}
+#story .carousel{width:100%;max-width:780px;margin:0 auto}
+#story .track{min-height:280px}
+#story .slide{min-height:280px;padding:24px 16px 10px;align-content:center}
+#story .slide .emo{font-size:6rem}
+#story .slide .num{font-size:4rem;padding:2px 24px}
+#story .ctrl{position:relative;z-index:2;margin-top:16px}
+main{padding-bottom:24px}
+.tabs{z-index:50}
+@media(max-width:640px){#story .track,#story .slide{min-height:250px}#story .slide .emo{font-size:5rem}#story .slide .num{font-size:3rem}.hero{padding-top:4px}}
+
+/* Navigation polish: keep the active item inside the rounded shell */
+.tabs{overflow:hidden;padding:7px 8px}
+.tabs button{min-width:0;margin:0 1px;transform:none}
+.tabs button span{display:grid;place-items:center;width:2.15rem;height:2.15rem;margin:0 auto 2px;background:#f4f0ff;border:2px solid rgba(43,27,61,.18);border-radius:12px;font-size:1.25rem;line-height:1;filter:saturate(.92);transition:transform .2s,background .2s,border-color .2s}
+.tabs button:hover span{transform:translateY(-2px) rotate(-3deg);background:#fff}
+.tabs button[aria-current=page]{transform:translateY(-3px);border-radius:15px}
+.tabs button[aria-current=page] span{background:#fff8d0;border-color:var(--ink);transform:none}
+@media(max-width:430px){.tabs{padding:6px 7px}.tabs button span{width:1.95rem;height:1.95rem;font-size:1.15rem;border-radius:10px}.tabs button{font-size:.72rem}}
+
+/* Custom icon treatment: friendly app icons instead of platform-dependent emoji */
+.tabs button .nav-icon{display:grid;place-items:center;width:2.15rem;height:2.15rem;margin:0 auto 2px;background:#f4f0ff;border:2px solid rgba(43,27,61,.18);border-radius:12px;color:var(--ink);transition:transform .2s,background .2s,border-color .2s}
+.tabs button .nav-icon svg{width:1.35rem;height:1.35rem;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabs button:hover .nav-icon{transform:translateY(-2px) rotate(-3deg);background:#fff}
+.tabs button[aria-current=page] .nav-icon{background:#fff8d0;border-color:var(--ink);transform:none}
+@media(max-width:430px){.tabs button .nav-icon{width:1.95rem;height:1.95rem;border-radius:10px}.tabs button .nav-icon svg{width:1.2rem;height:1.2rem}}
+/* Give the remaining playful category/story symbols a consistent illustrated badge */
+.chip span,.li .e,.slide .emo{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.li .e{display:grid;place-items:center;width:2.25rem;height:2.25rem;background:#fff;border:2px solid rgba(43,27,61,.16);border-radius:12px;line-height:1}
+.slide .emo{display:grid;place-items:center;min-width:5.8rem;min-height:5.8rem;padding:8px;background:rgba(255,255,255,.58);border:3px solid var(--ink);border-radius:24px;box-shadow:3px 4px 0 rgba(43,27,61,.18)}
+@media(max-width:640px){.slide .emo{min-width:5.2rem;min-height:5.2rem}}
+
+/* Cartoon typography */
+h1,h2,.logo,.big-num,.stats b,.btn,.slide .num,#gpct,.tabs button{font-family:"Fredoka","Baloo 2",Nunito,sans-serif;font-weight:600}
+.logo{font-weight:700;letter-spacing:.01em}
+/* Story illustrations */
+.slide .emo svg{width:4.4rem;height:4.4rem;fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(2px 3px 0 rgba(43,27,61,.12))}
+.slide .emo svg path:first-child,.slide .emo svg circle:first-child{fill:var(--sun)}
+@media(max-width:640px){.slide .emo svg{width:3.9rem;height:3.9rem}}
+
+/* Light, polished typography */
+body{font-family:"Quicksand",Nunito,system-ui,sans-serif;font-weight:500}
+h1,h2,.logo,.big-num,.stats b,.btn,.slide .num,#gpct,.tabs button{font-family:"Quicksand",Nunito,system-ui,sans-serif;font-weight:700}
+.logo{font-weight:700}.mood,.hint,.verdict,.gtxt{font-weight:500}
+/* One icon language across Spend, Story and every Story slide */
+.chip span,.li .e{font-family:"Quicksand",Nunito,sans-serif}
+.chip span svg,.li .e svg{width:1.35rem;height:1.35rem;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.chip span svg path:first-child,.li .e svg path:first-child{fill:var(--sun)}
+.chip span b{font-weight:600}
+.li .e{padding:5px}
+.slide .emo svg{stroke-width:2.6}
+
+/* Cute playful finish: soft lavender paper, hand-drawn type and gentle depth */
+body{
+  font-family:"Indie Flower",cursive;
+  font-weight:400;
+  letter-spacing:.015em;
+  line-height:1.45;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(255,255,255,.62) 0 4%,transparent 4.4%),
+    radial-gradient(circle at 86% 16%,rgba(255,255,255,.46) 0 7%,transparent 7.4%),
+    linear-gradient(145deg,#f6edff 0%,#efe6ff 48%,#e6dcfa 100%);
+  background-image:
+    radial-gradient(var(--ink) 1.1px,transparent 1.25px),
+    radial-gradient(circle at 12% 8%,rgba(255,255,255,.62) 0 4%,transparent 4.4%),
+    radial-gradient(circle at 86% 16%,rgba(255,255,255,.46) 0 7%,transparent 7.4%),
+    linear-gradient(145deg,#f6edff 0%,#efe6ff 48%,#e6dcfa 100%);
+  background-size:26px 26px,auto,auto,auto;
+}
+body.hc{background:var(--bg);background-image:none}
+h1,h2,.logo,.big-num,.stats b,.btn,.slide .num,#gpct,.tabs button,
+label,legend,.mood,.toast,.mini,.quick button,.li button{font-family:"Indie Flower",cursive;font-weight:400;letter-spacing:.02em}
+h1{font-size:clamp(2.3rem,6vw,3.3rem);line-height:1.05}
+h2{font-size:2rem;line-height:1.05}
+.logo{font-size:2.35rem;line-height:1;padding:5px 17px 1px;transform:rotate(-2deg)}
+.card,.bubble{border-width:3px;border-radius:30px;box-shadow:5px 6px 0 rgba(43,27,61,.2),0 15px 30px rgba(106,44,255,.08)}
+.card{position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;right:-34px;top:-42px;width:105px;height:105px;border:3px solid rgba(43,27,61,.08);border-radius:45% 55% 60% 40%;transform:rotate(24deg);pointer-events:none}
+.card h2{position:relative;z-index:1}
+.card h2::after{content:"";display:block;width:54px;height:7px;margin-top:5px;border-bottom:3px solid currentColor;border-radius:50%;transform:rotate(-2deg);opacity:.3}
+.fields input,.row-add input{font-family:"Quicksand",Nunito,sans-serif;font-weight:600}
+.btn{font-size:1.55rem;padding:4px 26px;border-radius:20px;box-shadow:4px 5px 0 var(--ink)}
+.btn:hover{transform:translate(-2px,-3px) rotate(-2deg)}
+.stats b{font-size:2rem}.stats span{font-family:"Quicksand",Nunito,sans-serif;font-weight:600}
+.big-num,.slide .num{font-size:1.15em;padding-inline:18px}
+.slide .num{font-size:3.9rem;line-height:1;padding-top:4px}
+.tabs{border-radius:28px;padding:8px;background:rgba(255,255,255,.96);box-shadow:5px 6px 0 rgba(43,27,61,.2),0 12px 24px rgba(106,44,255,.12)}
+.tabs button{font-size:.98rem}.tabs button span.nav-icon{border-radius:14px}
+.chip span{font-family:"Quicksand",Nunito,sans-serif;font-size:.86rem;font-weight:600;padding:4px 13px;border-radius:16px}
+.li .t{font-family:"Quicksand",Nunito,sans-serif;font-weight:600}
+.intro{background:linear-gradient(150deg,#ffd866,#f6edff 72%)}
+@media(max-width:640px){h1{font-size:2.35rem}h2{font-size:1.8rem}.logo{font-size:2.1rem}.btn{font-size:1.4rem}.slide .num{font-size:3.2rem}}
+
+/* Final font consistency: no leftover Quicksand in the visible UI */
+.li .t,.li button,.chip span,.stats span,.fields input,.row-add input,.quick button{
+  font-family:"Indie Flower",cursive;
+  font-weight:400;
+}
+.li .t{font-size:1.18rem;letter-spacing:.01em}
+.li button{font-size:1rem;padding:2px 11px}
+.chip span{font-size:1rem}
+.stats span{font-size:.95rem}
+
+/* Match the main form and dashboard numbers to the same Indie Flower voice */
+.fields label,.row-add label{font-family:"Indie Flower",cursive;font-size:1.12rem;font-weight:400;letter-spacing:.015em}
+.fields input,.row-add input{font-family:"Indie Flower",cursive;font-size:1.3rem;font-weight:400;line-height:1.15;padding:7px 12px}
+.stats b{font-family:"Indie Flower",cursive;font-size:2.15rem;font-weight:400;line-height:1.05}
+.stats span{font-family:"Indie Flower",cursive;font-size:1rem;font-weight:400}
+
+/* Penny mood marks: hand-drawn theme icons instead of system emoji */
+.mood{display:flex;align-items:center;gap:7px}
+.mood-svg{width:1.45em;height:1.45em;flex:0 0 auto;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;filter:drop-shadow(1px 2px 0 rgba(43,27,61,.15))}
+.mood-svg circle:first-child{fill:var(--sun)}
+.mood-svg circle:not(:first-child){fill:var(--ink);stroke:none}
+
+/* Story slide copy should stay light and regular */
+#story .slide h2,#story .slide .num,#story .slide p,#story .slide p b,#story .slide .small{font-family:"Indie Flower",cursive;font-weight:400}
+#story .slide h2{font-size:2rem}
+#story .slide .num{font-size:3.9rem}

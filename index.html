@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oink!</title>
+<meta name="description" content="See how many days your money will last, and what your spending really means.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Indie+Flower&family=Nunito:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div id="intro" class="intro" role="dialog" aria-modal="true" aria-label="Welcome to Oink">
+  <div class="carousel" id="introC">
+    <div class="track">
+      <div class="slide s1"><div class="emo">🐷</div><h2>Hi, I'm Penny!</h2><p>I'm your money buddy. I turn scary numbers into things you can actually picture.</p></div>
+      <div class="slide s2"><div class="emo">📅</div><h2>Money in days</h2><p>Forget spreadsheets. I'll tell you how many days your cash will last.</p></div>
+      <div class="slide s3"><div class="emo">🍔</div><h2>Spending, made real</h2><p>"You spent 3 days of money on takeout." Now that makes sense, right?</p></div>
+    </div>
+    <div class="ctrl"><button class="arrow" data-d="-1" aria-label="Previous slide">‹</button><div class="dots" role="tablist"></div><button class="arrow" data-d="1" aria-label="Next slide">›</button></div>
+  </div>
+  <button id="go" class="btn">Let's go!</button>
+</div>
+
+<header class="top">
+  <span class="logo">Oink!</span>
+  <button id="contrast" class="mini" aria-pressed="false">High contrast</button>
+  <button id="big" class="mini" aria-pressed="false">Bigger text</button>
+</header>
+
+<main id="main">
+<!-- HOME -->
+<section class="page active" id="home" aria-labelledby="h">
+  <div class="hero">
+    <svg id="pig" viewBox="0 0 220 190" role="button" tabindex="0" aria-label="Penny the pig. Press to say hi" class="happy">
+      <ellipse cx="110" cy="178" rx="62" ry="8" fill="#2B1B3D" opacity=".15"/>
+      <path d="M52 52 L40 14 L82 36Z M168 52 L180 14 L138 36Z" fill="#FF7AA8" stroke="#2B1B3D" stroke-width="5" stroke-linejoin="round"/>
+      <ellipse cx="110" cy="108" rx="84" ry="68" fill="#FF9EC0" stroke="#2B1B3D" stroke-width="5"/>
+      <rect x="86" y="46" width="48" height="9" rx="4.5" fill="#2B1B3D"/>
+      <circle cx="76" cy="96" r="11" fill="#fff" stroke="#2B1B3D" stroke-width="4"/><circle id="e1" cx="78" cy="98" r="5" fill="#2B1B3D"/>
+      <circle cx="144" cy="96" r="11" fill="#fff" stroke="#2B1B3D" stroke-width="4"/><circle id="e2" cx="146" cy="98" r="5" fill="#2B1B3D"/>
+      <ellipse cx="110" cy="124" rx="28" ry="20" fill="#FFC3D8" stroke="#2B1B3D" stroke-width="5"/>
+      <circle cx="101" cy="124" r="4" fill="#2B1B3D"/><circle cx="119" cy="124" r="4" fill="#2B1B3D"/>
+      <path id="mouth" d="M92 152 Q110 168 128 152" fill="none" stroke="#2B1B3D" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="52" cy="124" r="9" fill="#FF5C93" opacity=".5"/><circle cx="168" cy="124" r="9" fill="#FF5C93" opacity=".5"/>
+      <path id="sweat" d="M176 70 q8 12 0 18 q-8 -6 0 -18Z" fill="#7CC6FF" stroke="#2B1B3D" stroke-width="3" opacity="0"/>
+    </svg>
+    <div class="bubble">
+      <p id="mood" class="mood" aria-live="polite">…</p>
+      <h1 id="h">Your money lasts <span id="runway" class="big-num">0</span> days</h1>
+      <p id="verdict" class="verdict" aria-live="polite"></p>
+    </div>
+  </div>
+  <div class="card sun">
+    <h2>Your money story</h2>
+    <div class="fields">
+      <label>Money this month ($)<input id="total" type="number" inputmode="numeric" min="1" value="3000"></label>
+      <label>Lasts until day<input id="days" type="number" inputmode="numeric" min="1" max="60" value="30"></label>
+      <label>Today is day<input id="today" type="number" inputmode="numeric" min="1" value="12"></label>
+    </div>
+    <div class="stats">
+      <div><b id="left">0</b><span>Left to spend</span></div>
+      <div><b id="daily">0</b><span>Safe per day</span></div>
+      <div><b id="spent">0</b><span>Spent so far</span></div>
+    </div>
+    <div class="meter"><div id="meterFill"></div></div>
+    <p class="hint" id="meterTxt"></p>
+  </div>
+</section>
+
+<!-- ADD -->
+<section class="page" id="add" aria-labelledby="s2">
+  <div class="card mint">
+    <h2 id="s2">What did you spend?</h2>
+    <div class="row-add">
+      <label class="amt">Amount ($)<input id="amount" type="number" inputmode="numeric" min="1" placeholder="e.g. 85"></label>
+      <button id="addBtn" class="btn">Add it!</button>
+    </div>
+    <div class="quick" aria-label="Quick amounts"><button data-q="10">$10</button><button data-q="25">$25</button><button data-q="50">$50</button><button data-q="100">$100</button></div>
+    <fieldset class="chips"><legend>Category</legend><div id="chips"></div></fieldset>
+    <p id="toast" class="toast" role="status" aria-live="polite"></p>
+  </div>
+  <div class="card pink"><h2>Latest spending</h2><ul id="list" class="list"></ul></div>
+</section>
+
+<!-- STORY SLIDES -->
+<section class="page" id="story" aria-labelledby="s3">
+  <div class="card sky">
+    <h2 id="s3">Your spending, in days</h2>
+    <p class="hint">Swipe through. Every purchase becomes days of your normal budget.</p>
+    <div class="carousel big" id="storyC">
+      <div class="track" id="storyTrack"></div>
+      <div class="ctrl"><button class="arrow" data-d="-1" aria-label="Previous slide">‹</button><div class="dots"></div><button class="arrow" data-d="1" aria-label="Next slide">›</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- GOAL -->
+<section class="page" id="goal" aria-labelledby="s4">
+  <div class="card sun goal">
+    <h2 id="s4">Piggy goal</h2>
+    <div class="fields two">
+      <label>I'm saving for<input id="gname" type="text" maxlength="24" value="New headphones"></label>
+      <label>Goal amount ($)<input id="gtarget" type="number" inputmode="numeric" min="1" value="400"></label>
+    </div>
+    <div class="jarwrap">
+      <div class="jar" role="img" id="jar" aria-label="Savings jar"><div class="water" id="water"></div><span id="gpct">0%</span></div>
+      <div class="gside">
+        <p class="gtxt" id="gtxt"></p>
+        <div class="quick"><button data-s="25">+ $25</button><button data-s="50">+ $50</button><button data-s="100">+ $100</button></div>
+        <button id="gundo" class="mini">Undo last stash</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav class="tabs" aria-label="Pages">
+  <button data-p="home" aria-current="page"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-6h6v6M7 11h.01M17 11h.01"/></svg></span>Home</button>
+  <button data-p="add"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 7.5h16v11H4z"/><path d="M7 7.5V5h10v2.5M4 12h16M8 15h3"/><circle cx="17" cy="15" r="1.5"/></svg></span>Spend</button>
+  <button data-p="story"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M16 4v16M3 9h5M16 9h5M3 15h5M16 15h5"/></svg></span>Story</button>
+  <button data-p="goal"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><path d="m12 12 5-5M17 7h-3M17 7v3"/></svg></span>Goal</button>
+</nav>
+<script src="app.js"></script>
+</body>
+</html>
